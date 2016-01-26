@@ -3,6 +3,7 @@
   color: white;
   padding-bottom: 80px; }
   .jumbotron .btn-primary {
+    transition: background 0.5s ease;
     background: #48AB9A;
     border-color: #48AB9A; }
     .jumbotron .btn-primary:hover {

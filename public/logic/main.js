@@ -31,8 +31,6 @@ angular.module("ShineApp", [])
         }
     ])
     .controller("ShineController", function($scope, $interval, instagram) {
-        $scope.pics1 = [];
-        $scope.pics2 = [];
         $scope.pics = [];
         $scope.have = [];
         $scope.orderBy = "-likes.count";
@@ -40,8 +38,6 @@ angular.module("ShineApp", [])
             instagram.fetchPopular(function(data) {
                 for(var i=0; i<data.length; i++) {
                     if (typeof $scope.have[data[i].id]==="undefined") {
-                        $scope.pics1.push(data[i]) ;
-                        $scope.pics2.push(data[i]) ;
                         $scope.pics.push(data[i]) ;
                         $scope.have[data[i].id] = "1";
                     }
