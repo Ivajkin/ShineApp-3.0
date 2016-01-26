@@ -1,84 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <% include ../partials/header.ejs %>
+    <% include ../partials/header.ejs %>
 </head>
 
 <body>
 
-  <% include ../partials/nav.ejs %>
+<% include ../partials/nav.ejs %>
 
 <div class="jumbotron text-center">
-  <div class="container">
-    <a href="/" class="lang-logo">
-      <img src="/shine-logo.png">
-    </a>
-    <h1>ShineApp-3.0</h1>
-    <p>Мониторинг инстаграмма по введённым хэш-тэгам.</p>
-    <a type="button" class="btn btn-lg btn-default" onclick="document.getElementById('start').scrollIntoView();"><span class="glyphicon glyphicon-flash"></span> Запуск</a>
-    <a type="button" class="btn btn-lg btn-primary" onclick="document.getElementById('about').scrollIntoView();"><span class="glyphicon glyphicon-download"></span> Дополнительная информация</a>
-  </div>
+    <div class="container">
+        <a href="/" class="lang-logo">
+            <img src="/shine-logo.png">
+        </a>
+        <h1>ShineApp-3.0</h1>
+        <p>Мониторинг инстаграмма по введённым хэш-тэгам.</p>
+        <a type="button" class="btn btn-lg btn-default" onclick="document.getElementById('start').scrollIntoView();"><span class="glyphicon glyphicon-flash"></span> Запуск</a>
+        <a type="button" class="btn btn-lg btn-primary" onclick="document.getElementById('about').scrollIntoView();"><span class="glyphicon glyphicon-download"></span> Дополнительная информация</a>
+    </div>
 </div>
 
 
-  <div id="start"></div>
+<div id="start"></div>
 <div class="container">
-  <div class="row">
+    <div class="row">
 
-    <div class="col-md-6">
-      <h3><span class="glyphicon glyphicon-tags"></span> Хеш-тэги для отслеживания:</h3>
-      <div class="col-md-3">
-        <input type="text" value="#cat" title="First hash"/>
-      </div>
-      <div class="col-md-3">
-        <input type="text" value="#dog" title="Second hash"/>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <h3><span class="glyphicon glyphicon-info-sign"></span> Результат:</h3>
-      <div class="container" data-ng-app="ShineApp" data-ng-controller="ShineController">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6"><h1>Popular <button type="button" class="btn btn-success" data-ng-click="getMore()">You have {{pics.length}} pictures on page - Click to see more pictures?</button></h1></div>
-          </div>
-          <div class="row">
-            <div data-ng-repeat="p in pics | orderBy:orderBy" class="col-md-2">
-              <!--suppress HtmlUnknownTarget -->
-              <a href="{{p.link}}" target="_blank"><img data-ng-src="{{p.images.low_resolution.url}}" class="img-responsive thumbnail" title="{{p.caption.text}}" ></a>
-              <span class="glyphicon glyphicon-heart"> {{p.likes.count}}</span>
+        <div class="col-md-6">
+            <h3><span class="glyphicon glyphicon-tags"></span> Хеш-тэги для отслеживания:</h3>
+            <div class="col-md-3">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">#</span>
+                    <input type="text" value="#cat" class="form-control" placeholder="First hash" aria-describedby="basic-addon1" title="First hash">
+                </div>
             </div>
-          </div>
+            <div class="col-md-3">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">#</span>
+                    <input type="text" value="#dog" class="form-control" placeholder="Second hash" aria-describedby="basic-addon1" title="Second hash">
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="col-md-6">
+            <h3><span class="glyphicon glyphicon-info-sign"></span> Результат:</h3>
+            <div class="container" data-ng-app="ShineApp" data-ng-controller="ShineController">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6"><h1>Popular <button type="button" class="btn btn-success" data-ng-click="getMore()">You have {{pics.length}} pictures on page - Click to see more pictures?</button></h1></div>
+                    </div>
+                    <div class="row">
+                        <div data-ng-repeat="p in pics | orderBy:orderBy" class="col-md-2">
+                            <!--suppress HtmlUnknownTarget -->
+                            <a href="{{p.link}}" target="_blank"><img data-ng-src="{{p.images.low_resolution.url}}" class="img-responsive thumbnail" title="{{p.caption.text}}" ></a>
+                            <span class="glyphicon glyphicon-heart"> {{p.likes.count}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
     <hr/>
-  <div class="row">
+    <div class="row">
 
-    <div class="col-md-12">
-        <div id="about"></div>
-      <h3><span class="glyphicon glyphicon-info-sign"></span> Задача</h3>
+        <div class="col-md-12">
+            <div id="about"></div>
+            <h3><span class="glyphicon glyphicon-info-sign"></span> Задача</h3>
 
-        <h4>Цель задания</h4>
-        <p>Максимально полно реализовать функциональность, описанную в техническом задании, и продемонстрировать свои умения по собственному усмотрению. При оценке выполнения тестового задания будут учитываться работоспособность, качество и оформление кода, обоснованность принятых архитектурных решений, а также инициатива кандидата (реализация функциональности, напрямую не указанной в ТЗ, но позволяющей продемонстрировать технические навыки кандидата). Оценивается как качество кода, так и вёрстка (HTML/CSS).</p>
-        <h4>Техническое задание</h4>
-        <h5>Основные требования</h5>
-        <p>Требуется реализовать приложение, которое мониторит инстаграмм по введённым хэш-тэгам.</p>
-        <ol>
-            <li>1) Запуск приложения
-                <p>При запуске экран приложения делится на 3 столбца. 2 из них имеют поле ввода хэш-тега. Третий столбец отображает фотографии, которые подходят под оба тэга. Значения по умолчанию: #cat и #dog. Соответственно в 3-м столбце будут фотографии имеющие и тэг #cat и тэг #dog.</p>
-            </li>
+            <h4>Цель задания</h4>
+            <p>Максимально полно реализовать функциональность, описанную в техническом задании, и продемонстрировать свои умения по собственному усмотрению. При оценке выполнения тестового задания будут учитываться работоспособность, качество и оформление кода, обоснованность принятых архитектурных решений, а также инициатива кандидата (реализация функциональности, напрямую не указанной в ТЗ, но позволяющей продемонстрировать технические навыки кандидата). Оценивается как качество кода, так и вёрстка (HTML/CSS).</p>
+            <h4>Техническое задание</h4>
+            <h5>Основные требования</h5>
+            <p>Требуется реализовать приложение, которое мониторит инстаграмм по введённым хэш-тэгам.</p>
+            <ol>
+                <li>1) Запуск приложения
+                    <p>При запуске экран приложения делится на 3 столбца. 2 из них имеют поле ввода хэш-тега. Третий столбец отображает фотографии, которые подходят под оба тэга. Значения по умолчанию: #cat и #dog. Соответственно в 3-м столбце будут фотографии имеющие и тэг #cat и тэг #dog.</p>
+                </li>
 
-            <li>2) Работа приложения
-                <p>2 колонки с тэгами отображают последние 30 фото и обновляются не чаще раза в 10 секунд. Дополнительная колонка с пересечением по всем 2 тэгам вычисляется самостоятельно на клиенте и сохраняет все фото. При условии изменения тэга в любой из 2х колонок набор в 3й - не очищается.</p>
-            </li>
-          </ol>
-        <h5>Технические ограничения</h5>
-        <p>Приложение разрабатывается с использованием фреймворка AngularJS и Должно быть построено по принципам SPA (Single Page Application), то есть работать без перезагрузки страницы. В разработке не допускается использование сторонних библиотек. Поддержка браузеров: Google Chrome актуальной версии.</p>
-        <h4>Требования к оформлению тестового задания</h4>
-        <p>Код проекта должен находиться в публичном git-репозитории на github.com. Все зависимости должны быть описаны в файле package.json или bower.json в корне проекта. Инструкции по установке, сборке и запуску приложения, должна быть описаны в файле README.md в корне проекта.</p>
-    </div>
-  </div> <!-- row -->
+                <li>2) Работа приложения
+                    <p>2 колонки с тэгами отображают последние 30 фото и обновляются не чаще раза в 10 секунд. Дополнительная колонка с пересечением по всем 2 тэгам вычисляется самостоятельно на клиенте и сохраняет все фото. При условии изменения тэга в любой из 2х колонок набор в 3й - не очищается.</p>
+                </li>
+            </ol>
+            <h5>Технические ограничения</h5>
+            <p>Приложение разрабатывается с использованием фреймворка AngularJS и Должно быть построено по принципам SPA (Single Page Application), то есть работать без перезагрузки страницы. В разработке не допускается использование сторонних библиотек. Поддержка браузеров: Google Chrome актуальной версии.</p>
+            <h4>Требования к оформлению тестового задания</h4>
+            <p>Код проекта должен находиться в публичном git-репозитории на github.com. Все зависимости должны быть описаны в файле package.json или bower.json в корне проекта. Инструкции по установке, сборке и запуску приложения, должна быть описаны в файле README.md в корне проекта.</p>
+        </div>
+    </div> <!-- row -->
 </div>
 
 </body>
