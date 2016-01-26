@@ -1,5 +1,6 @@
 .jumbotron {
-    background: rgb(131, 181, 96);
+    /* background: rgb(131, 181, 96); */
+    background: none;
     color: white;
     padding-bottom: 80px;
 }
@@ -51,4 +52,11 @@
 .video-container {
     max-height: 507px;
     overflow: hidden;
+    min-width: 100%;
+    min-height: 100%;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    display: block;
 }
