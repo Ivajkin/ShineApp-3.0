@@ -2,6 +2,8 @@
 
 ShineApp-3.0 is Node.js app using [Express 4](http://expressjs.com/) для мониторинга хеш-тэгов инстаграмм.
 
+![ShineApp Screenshot](https://dl.dropboxusercontent.com/u/38317632/ShineApp%20screenshot-0.1.png)
+
 ## Running Locally
 
 Make sure you have [Node.js](http://nodejs.org/) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
