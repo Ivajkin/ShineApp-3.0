@@ -37,7 +37,100 @@
     </div>
     <div class="col-md-6">
       <h3><span class="glyphicon glyphicon-info-sign"></span> Результат:</h3>
-      INSTAGRAM-FLOW
+      <div class="container" data-ng-app="ShineApp" data-ng-controller="ShineController">
+        <div class="jumbotron">
+          <div class="container">
+            <h2>Instagram images using AngularJS</h2>
+            <p>Need to fetch Instgram images for your <code>AngularJS</code> <code>Bootstrap</code> website? AngularJS makes easy to fetch the images, bootstrap makes et easy to layout - so here you go, a simple pen to use a <code>API</code> using your favourite building blocks. <em>- Code found using Google - borrowed from a <a href="http://jsfiddle.net/scyrizales/pC9dH/"><code>JSFIDDLE</code></a></em></p>
+            <div class="col-md-12 tags"><strong>Tags:</strong>
+            <span data-ng-repeat="tag in tags">
+            <a href="http://codepen.io/search?q={{tag}}&limit=all&depth=everything&show_forks=false"><code class="btn btn-primary btn-xs">{{tag}}</code></a></span>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12"><h1>Showing popular Instagram pictures <button type="button" class="btn btn-success" data-ng-click="getMore()">You have {{pics.length}} pictures on page - Click to see more pictures?</button></h1></div>
+          </div>
+          <div class="row">
+            <div data-ng-repeat="p in pics | orderBy:orderBy" class="col-md-2">
+              <a href="{{p.link}}" target="_blank"><img data-ng-src="{{p.images.low_resolution.url}}" class="img-responsive thumbnail" title="{{p.caption.text}}"></a>
+              <span class="glyphicon glyphicon-heart"> {{p.likes.count}}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- UNDER CONSTRUNCTION START -->
+        <div id="banner"><a href="http://codepen.io/netsi1964/full/upDno">View 3D version</a></div>
+        <style type="text/css" scoped>
+          /* RELATED TO UNDER CONSTRUCTION ONLY */
+          #banner{
+            height: 199px;
+            width: 199px;
+            overflow:hidden;
+            padding: 0;
+            margin: 0;
+            position: fixed;
+            right: 0;
+            top: 0;
+          }
+          #banner a{
+
+            display: block;
+            width: 290px;
+            font-size: 14px;
+            font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT",
+            "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma,
+            Geneva, "Helvetica Neue", Helvetica, Arial, sans serif;
+            background-color: #333;
+            color: #FFF;
+            word-spacing: 2px;
+            text-decoration: none;
+            padding: 5px 15px 5px 25px;
+
+            position:relative;
+            left: 20px;
+            top: -37px;
+            text-align: center;
+
+            -moz-transform-origin: 0 0 ;
+            -moz-transform:rotate(45deg);
+            -moz-box-shadow:    1px 1px 5px 1px #666;
+
+            -webkit-transform-origin: 0 0 ;
+            -webkit-transform:rotate(45deg);
+            -webkit-box-shadow: 1px 1px 5px 1px #666;
+
+            -ms-transform-origin: 0 0 ;
+            -ms-transform:rotate(45deg);
+            -ms-box-shadow: 1px 1px 5px 1px #666;
+
+            transform-origin: 0 0 ;
+            transform:rotate(45deg);
+            box-shadow: 1px 1px 5px 1px #666;
+
+            background-image: linear-gradient(bottom, #000000 3%, #666666 5%, #000000 7%, #000000 93%, #666666 95%, #000000 97%);
+            background-image: -o-linear-gradient(bottom, #000000 3%, #666666 5%, #000000 7%, #000000 93%, #666666 95%, #000000 97%);
+            background-image: -moz-linear-gradient(bottom, #000000 3%, #666666 5%, #000000 7%, #000000 93%, #666666 95%, #000000 97%);
+            background-image: -webkit-linear-gradient(bottom, #000000 3%, #666666 5%, #000000 7%, #000000 93%, #666666 95%, #000000 97%);
+            background-image: -ms-linear-gradient(bottom, #000000 3%, #666666 5%, #000000 7%, #000000 93%, #666666 95%, #000000 97%);
+
+            background-image: -webkit-gradient(
+                    linear,
+                    left bottom,
+                    left top,
+                    color-stop(0.03, #000000),
+                    color-stop(0.05, #666666),
+                    color-stop(0.07, #000000),
+                    color-stop(0.93, #000000),
+                    color-stop(0.95, #666666),
+                    color-stop(0.97, #000000)
+            );
+
+          }
+        </style>
+        <!-- UNDER CONSTRUNCTION END -->
+      </div>
     </div>
   </div>
   <div class="row">
@@ -68,6 +161,52 @@
   </div>
 </div>
 
+<script type="application/javascript">
+  angular.module("ShineApp", [])
+          .filter('fromTo', function() {
+            return function(input, from, total, lessThan) {
+              from = parseInt(from);
+              total = parseInt(total);
+              for (var i = from; i < from + total && i < lessThan; i++) {
+                input.push(i);
+              }
+              return input;
+            }
+          })
+          .factory('instagram', ['$http',
+            function($http) {
+              return {
+                fetchPopular: function(callback) {
 
+                  var endPoint = "https://api.instagram.com/v1/media/popular?client_id=642176ece1e7445e99244cec26f4de1f&callback=JSON_CALLBACK";
+
+                  $http.jsonp(endPoint).success(function(response) {
+                    callback(response.data);
+                  });
+                }
+              }
+            }
+          ])
+          .controller("ShineController", function($scope, $interval, instagram) {
+            $scope.pics = [];
+            $scope.have = [];
+            $scope.orderBy = "-likes.count";
+            $scope.getMore = function() {
+              instagram.fetchPopular(function(data) {
+                for(var i=0; i<data.length; i++) {
+                  if (typeof $scope.have[data[i].id]==="undefined") {
+                    $scope.pics.push(data[i]) ;
+                    $scope.have[data[i].id] = "1";
+                  }
+                }
+              });
+            };
+            $scope.getMore();
+
+            $scope.tags = [
+              'Bootstrap', 'AngularJS', 'Instagram', 'Factory'
+            ]
+          });
+</script>
 </body>
 </html>
