@@ -18,10 +18,10 @@ angular.module("ShineApp", [])
     .factory('instagram', ['$http',
         function($http) {
             return {
-                fetchPopular: function(callback, first_hash, second_hash) {
+                fetchPopular: function(callback, first_hash, second_hash, count) {
 
-                    var endPoint1 = "https://api.instagram.com/v1/tags/" + first_hash + "/media/recent?client_id=642176ece1e7445e99244cec26f4de1f&callback=JSON_CALLBACK";
-                    var endPoint2 = "https://api.instagram.com/v1/tags/" + second_hash + "/media/recent?client_id=642176ece1e7445e99244cec26f4de1f&callback=JSON_CALLBACK";
+                    var endPoint1 = "https://api.instagram.com/v1/tags/" + first_hash + "/media/recent?client_id=642176ece1e7445e99244cec26f4de1f&callback=JSON_CALLBACK&count=" + count;
+                    var endPoint2 = "https://api.instagram.com/v1/tags/" + second_hash + "/media/recent?client_id=642176ece1e7445e99244cec26f4de1f&callback=JSON_CALLBACK&count=" + count;
 
                     $http.jsonp(endPoint1).success(function(response1) {
                         $http.jsonp(endPoint2).success(function(response2) {
@@ -37,6 +37,7 @@ angular.module("ShineApp", [])
         $scope.pics = [];
         $scope.have = [];
         $scope.orderBy = "-likes.count";
+        $scope.loadCount = 30;
         $scope.getMore = function() {
             instagram.fetchPopular(function(data) {
                 for(var i=0; i<data.length; i++) {
@@ -45,9 +46,11 @@ angular.module("ShineApp", [])
                         $scope.have[data[i].id] = "1";
                     }
                 }
-            }, $scope.first_hash, $scope.second_hash);
+            }, $scope.first_hash, $scope.second_hash, $scope.loadCount);
         };
         $scope.getMore();
+        // Load balancing:
+        $scope.loadCount = 5;
 
         $scope.updatePictures = $interval($scope.getMore, 10000);
 
