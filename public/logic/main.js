@@ -49,7 +49,13 @@ angular.module("ShineApp", [])
         };
         $scope.getMore();
 
-        $scope.tags = [
-            'Bootstrap', 'AngularJS', 'Instagram', 'Factory'
-        ]
+        $scope.updatePictures = $interval($scope.getMore, 10000);
+
+        //$scope.tags = [
+        //    'Bootstrap', 'AngularJS', 'Instagram', 'Factory'
+        //]
+
+        $scope.$on('$destroy', function() {
+            $interval.cancel($scope.getMore);
+        });
     });
