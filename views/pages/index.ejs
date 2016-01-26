@@ -56,15 +56,26 @@
   <div class="row">
 
     <div class="col-md-6">
-      <h3><span class="glyphicon glyphicon-info-sign"></span> Lorem</h3>
-      <ul>
-        <li>This app was deployed to Heroku, either using Git or by using <a href="https://github.com/Ivajkin/ShineApp-3.0">Heroku Button</a> on the repository.</li>
+      <h3><span class="glyphicon glyphicon-info-sign"></span> Задача</h3>
 
-        <li>When Heroku received the source code, it grabbed all the dependencies in the <a href="https://github.com/Ivajkin/ShineApp-3.0/blob/master/package.json">package.json</a>.</li>
-        <li>The platform then spins up a dyno, a lightweight container that provides an isolated environment in which the slug can be mounted and executed.</li>
-        <li>You can scale your app, manage it, and deploy over <a href="#">150 add-on services</a>, from the Dashboard or CLI.</li>
-        <li>Check out the <a href="#">Getting Started</a> guide to learn more!</li>
-      </ul>
+        <h4>Цель задания</h4>
+        <p>Максимально полно реализовать функциональность, описанную в техническом задании, и продемонстрировать свои умения по собственному усмотрению. При оценке выполнения тестового задания будут учитываться работоспособность, качество и оформление кода, обоснованность принятых архитектурных решений, а также инициатива кандидата (реализация функциональности, напрямую не указанной в ТЗ, но позволяющей продемонстрировать технические навыки кандидата). Оценивается как качество кода, так и вёрстка (HTML/CSS).</p>
+        <h4>Техническое задание</h4>
+        <h5>Основные требования</h5>
+        <p>Требуется реализовать приложение, которое мониторит инстаграмм по введённым хэш-тэгам.</p>
+        <ol>
+            <li>1) Запуск приложения
+                <p>При запуске экран приложения делится на 3 столбца. 2 из них имеют поле ввода хэш-тега. Третий столбец отображает фотографии, которые подходят под оба тэга. Значения по умолчанию: #cat и #dog. Соответственно в 3-м столбце будут фотографии имеющие и тэг #cat и тэг #dog.</p>
+            </li>
+
+            <li>2) Работа приложения
+                <p>2 колонки с тэгами отображают последние 30 фото и обновляются не чаще раза в 10 секунд. Дополнительная колонка с пересечением по всем 2 тэгам вычисляется самостоятельно на клиенте и сохраняет все фото. При условии изменения тэга в любой из 2х колонок набор в 3й - не очищается.</p>
+            </li>
+          </ol>
+        <h5>Технические ограничения</h5>
+        <p>Приложение разрабатывается с использованием фреймворка AngularJS и Должно быть построено по принципам SPA (Single Page Application), то есть работать без перезагрузки страницы. В разработке не допускается использование сторонних библиотек. Поддержка браузеров: Google Chrome актуальной версии.</p>
+        <h4>Требования к оформлению тестового задания</h4>
+        <p>Код проекта должен находиться в публичном git-репозитории на github.com. Все зависимости должны быть описаны в файле package.json или bower.json в корне проекта. Инструкции по установке, сборке и запуску приложения, должна быть описаны в файле README.md в корне проекта.</p>
     </div>
     <div class="col-md-6">
       <h3><span class="glyphicon glyphicon-link"></span> Helpful Links</h3>
