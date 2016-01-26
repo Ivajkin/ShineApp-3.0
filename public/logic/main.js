@@ -50,7 +50,7 @@ angular.module("ShineApp", [])
         };
         $scope.getMore();
         // Load balancing:
-        $scope.loadCount = 5;
+        $scope.loadCount = 10;
 
         $scope.updatePictures = $interval($scope.getMore, 10000);
 
