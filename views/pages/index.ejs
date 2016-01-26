@@ -31,7 +31,7 @@
                     <span class="input-group-addon" id="basic-addon1">#</span>
                     <input data-ng-model="first_hash" type="text" value="cat" class="form-control" placeholder="First hash" aria-describedby="basic-addon1" title="First hash">
                 </div>
-
+                <br/>{{first_hash}}
                 <div data-ng-repeat="p in pics | filter:first_hash | orderBy:orderBy" class="col-md-12">
                     <!--suppress HtmlUnknownTarget -->
                     <a href="{{p.link}}" target="_blank"><img data-ng-src="{{p.images.low_resolution.url}}" class="img-responsive thumbnail" title="{{p.caption.text}}" ></a>
@@ -43,6 +43,7 @@
                     <span class="input-group-addon" id="basic-addon1">#</span>
                     <input type="text" value="dog" class="form-control" placeholder="Second hash" aria-describedby="basic-addon1" title="Second hash">
                 </div>
+                <br/>
                 <div data-ng-repeat="p in pics | orderBy:orderBy" class="col-md-12">
                     <!--suppress HtmlUnknownTarget -->
                     <a href="{{p.link}}" target="_blank"><img data-ng-src="{{p.images.low_resolution.url}}" class="img-responsive thumbnail" title="{{p.caption.text}}" ></a>
