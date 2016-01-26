@@ -45,3 +45,8 @@
     position: absolute;
     z-index: -1;
 }
+
+.video-container {
+    max-height: 507px;
+    overflow: hidden;
+}
