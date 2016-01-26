@@ -20,11 +20,14 @@ angular.module("ShineApp", [])
             return {
                 fetchPopular: function(callback) {
 
-                    var endPoint = "https://api.instagram.com/v1/tags/snowy/media/recent?client_id=642176ece1e7445e99244cec26f4de1f&callback=JSON_CALLBACK";
-                        /*"https://api.instagram.com/v1/media/popular?client_id=642176ece1e7445e99244cec26f4de1f&callback=JSON_CALLBACK";*/
+                    var endPoint1 = "https://api.instagram.com/v1/tags/cat/media/recent?client_id=642176ece1e7445e99244cec26f4de1f&callback=JSON_CALLBACK";
+                    var endPoint2 = "https://api.instagram.com/v1/tags/dog/media/recent?client_id=642176ece1e7445e99244cec26f4de1f&callback=JSON_CALLBACK";
 
-                    $http.jsonp(endPoint).success(function(response) {
-                        callback(response.data);
+                    $http.jsonp(endPoint1).success(function(response1) {
+                        $http.jsonp(endPoint2).success(function(response2) {
+                            var data = response1.data.concat(response2.data);
+                            callback(data);
+                        });
                     });
                 }
             }
