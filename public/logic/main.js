@@ -18,10 +18,10 @@ angular.module("ShineApp", [])
     .factory('instagram', ['$http',
         function($http) {
             return {
-                fetchPopular: function(callback) {
+                fetchPopular: function(callback, first_hash, second_hash) {
 
-                    var endPoint1 = "https://api.instagram.com/v1/tags/cat/media/recent?client_id=642176ece1e7445e99244cec26f4de1f&callback=JSON_CALLBACK";
-                    var endPoint2 = "https://api.instagram.com/v1/tags/dog/media/recent?client_id=642176ece1e7445e99244cec26f4de1f&callback=JSON_CALLBACK";
+                    var endPoint1 = "https://api.instagram.com/v1/tags/" + first_hash + "/media/recent?client_id=642176ece1e7445e99244cec26f4de1f&callback=JSON_CALLBACK";
+                    var endPoint2 = "https://api.instagram.com/v1/tags/" + second_hash + "/media/recent?client_id=642176ece1e7445e99244cec26f4de1f&callback=JSON_CALLBACK";
 
                     $http.jsonp(endPoint1).success(function(response1) {
                         $http.jsonp(endPoint2).success(function(response2) {
@@ -45,7 +45,7 @@ angular.module("ShineApp", [])
                         $scope.have[data[i].id] = "1";
                     }
                 }
-            });
+            }, $scope.first_hash, $scope.second_hash);
         };
         $scope.getMore();
 
