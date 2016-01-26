@@ -15,13 +15,13 @@
     </a>
     <h1>ShineApp-3.0</h1>
     <p>Мониторинг инстаграмма по введённым хэш-тэгам.</p>
-    <a type="button" class="btn btn-lg btn-default" href="#start"><span class="glyphicon glyphicon-flash"></span> Запуск</a>
-    <a type="button" class="btn btn-lg btn-primary" href="#about"><span class="glyphicon glyphicon-download"></span> Дополнительная информация</a>
+    <a type="button" class="btn btn-lg btn-default" onclick="document.getElementById('start').scrollIntoView();"><span class="glyphicon glyphicon-flash"></span> Запуск</a>
+    <a type="button" class="btn btn-lg btn-primary" data-ng-click="document.getElementById('about').scrollIntoView();"><span class="glyphicon glyphicon-download"></span> Дополнительная информация</a>
   </div>
 </div>
 
 
-  <a href="#start"></a>
+  <div id="start"></div>
 <div class="container">
   <div class="row">
 
@@ -56,7 +56,7 @@
   <div class="row">
 
     <div class="col-md-12">
-        <a href="#about"></a>
+        <div id="about"></div>
       <h3><span class="glyphicon glyphicon-info-sign"></span> Задача</h3>
 
         <h4>Цель задания</h4>
