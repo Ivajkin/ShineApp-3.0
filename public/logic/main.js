@@ -4,7 +4,7 @@
  * on 1/26/16.
  */
 
-angular.module("ShineApp", [])
+angular.module("ShineApp", ['duScroll'])
     .filter('fromTo', function() {
         return function(input, from, total, lessThan) {
             from = parseInt(from);
@@ -53,10 +53,6 @@ angular.module("ShineApp", [])
         $scope.loadCount = 10;
 
         $scope.updatePictures = $interval($scope.getMore, 10000);
-
-        //$scope.tags = [
-        //    'Bootstrap', 'AngularJS', 'Instagram', 'Factory'
-        //]
 
         $scope.$on('$destroy', function() {
             $interval.cancel($scope.getMore);
