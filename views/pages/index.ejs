@@ -4,7 +4,7 @@
     <% include ../partials/header.ejs %>
 </head>
 
-<body>
+<body data-ng-app="ShineApp" data-ng-controller="ShineController">
 
 <% include ../partials/nav.ejs %>
 
@@ -15,7 +15,7 @@
         </a>
         <h1>ShineApp 3.0</h1>
         <p>Мониторинг инстаграмма по введённым хэш-тэгам.</p>
-        <a type="button" class="btn btn-lg btn-default" onclick="document.getElementById('start').scrollIntoView();"><span class="glyphicon glyphicon-flash"></span> Запуск</a>
+        <a type="button" class="btn btn-lg btn-default" href="#start" du-smooth-scroll><span class="glyphicon glyphicon-flash"></span> Запуск</a>
         <a type="button" class="btn btn-lg btn-primary" onclick="document.getElementById('about').scrollIntoView();"><span class="glyphicon glyphicon-download"></span> Дополнительная информация</a>
 
 
@@ -32,7 +32,7 @@
 
 
 <div id="start"></div>
-<div class="container" data-ng-app="ShineApp" data-ng-controller="ShineController">
+<div class="container">
     <div class="row">
         <div class="col-md-4">
             <h3><span class="glyphicon glyphicon-tags"></span> Хеш-тэги для отслеживания:</h3>
